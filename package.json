@@ -1,18 +1,9 @@
 {
   "author": "eddie cianci",
   "scripts": {
-    "clean": "rm -rf dist/*",
-    "build:css:sass": "node-sass --output-style compressed src/site.scss dist/site.css",
-    "build:css:autoprefix": "autoprefixer dist/site.css -o dist/site.css",
-    "build:css": "npm run build:css:sass && npm run build:css:autoprefix",
-    "build:html:jade": "jade src/ -P -o dist/",
-    "build:html": "npm run build:html:jade",
-    "build": "npm run clean && npm run build:html && npm run build:css"
   },
   "devDependencies": {
-    "autoprefixer": "^5.1.0",
-    "jade": "^1.9.2",
-    "marked": "^0.3.3",
-    "node-sass": "^3.0.0-alpha.0"
+    "gulp": "^3.8.11",
+    "marked": "^0.3.3"
   }
 }
