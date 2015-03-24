@@ -1,6 +1,8 @@
 {
   "author": "eddie cianci",
   "scripts": {
+    "start": "gulp serve",
+    "build": "gulp build"
   },
   "devDependencies": {
     "browser-sync": "^2.3.1",

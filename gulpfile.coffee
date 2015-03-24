@@ -51,3 +51,5 @@ gulp.task 'serve', [ 'watch' ], ->
     server:
       baseDir: 'dist'
 
+gulp.task 'build', [ 'clean', 'stylesheets', 'pages', ]
+gulp.task 'default', [ 'build', 'serve' ]
