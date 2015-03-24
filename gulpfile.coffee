@@ -5,6 +5,7 @@ FILES_SASS  = DIR_SRC   + '**/*.scss'
 FILES_JADE  = DIR_SRC   + '**/*.jade'
 
 # dependencies
+fs            = require 'fs-extra'
 gulp          = require 'gulp'
 sass          = require 'gulp-sass'
 autoprefixer  = require 'gulp-autoprefixer'
@@ -13,6 +14,9 @@ jade          = require 'gulp-jade'
 rename        = require 'gulp-rename'
 
 # tasks
+gulp.task 'clean', (done) ->
+  fs.removeSync DIR_DEST
+  done()
 
 gulp.task 'sass', ->
   gulp.src [ FILES_SASS, '!**/_*' ]
