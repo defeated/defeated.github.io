@@ -3,6 +3,8 @@ DIR_SRC     = 'src/'
 DIR_DEST    = 'dist/'
 FILES_SASS  = DIR_SRC   + '**/*.scss'
 FILES_JADE  = DIR_SRC   + '**/*.jade'
+FILES_HTML  = DIR_DEST  + '*.html'
+FILES_CSS   = DIR_DEST  + '*.css'
 
 # dependencies
 fs            = require 'fs-extra'
@@ -36,4 +38,9 @@ gulp.task 'pages', ->
   gulp.src [ FILES_JADE, '!**/_*' ]
     .pipe jade pretty: true
     .pipe gulp.dest DIR_DEST
+
+gulp.task 'watch', ->
+  gulp.watch FILES_SASS, [ 'stylesheets' ]
+  gulp.watch FILES_JADE, [ 'pages' ]
+  gulp.watch FILES_HTML, reload
 
