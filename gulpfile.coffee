@@ -14,6 +14,8 @@ autoprefixer  = require 'gulp-autoprefixer'
 minifyCSS     = require 'gulp-minify-css'
 jade          = require 'gulp-jade'
 rename        = require 'gulp-rename'
+browserSync   = require 'browser-sync'
+reload        = browserSync.reload
 
 # tasks
 gulp.task 'clean', (done) ->
@@ -43,4 +45,9 @@ gulp.task 'watch', ->
   gulp.watch FILES_SASS, [ 'stylesheets' ]
   gulp.watch FILES_JADE, [ 'pages' ]
   gulp.watch FILES_HTML, reload
+
+gulp.task 'serve', [ 'watch' ], ->
+  browserSync
+    server:
+      baseDir: 'dist'
 
