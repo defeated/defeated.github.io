@@ -1,9 +1,7 @@
-doctype html
-html(lang="en")
-  head
-    title= pageTitle
-  body
-    #container.col
+extends ./layouts/_layout.jade
 
-      :markdown
-        **hello world**
+
+block content
+
+  :markdown
+    **hello world**
