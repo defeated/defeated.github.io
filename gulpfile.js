@@ -3,6 +3,7 @@
 // constants
 var DIR_SRC     = 'src/';
 var DIR_DEST    = 'dist/';
+var FILES_IMG   = DIR_SRC   + 'images/**/*.{jpg,gif,png}';
 var FILES_ES6   = DIR_SRC   + '**/*.js';
 var FILES_SASS  = DIR_SRC   + '**/*.scss';
 var FILES_JADE  = DIR_SRC   + '**/*.jade';
@@ -64,6 +65,11 @@ gulp.task('pages', function(){
     .pipe(gulp.dest(DIR_DEST));
 });
 
+gulp.task('images', function(){
+  return gulp.src(FILES_IMG)
+    .pipe(gulp.dest(DIR_DEST + 'images/'));
+});
+
 gulp.task('watch', function(){
   gulp.watch(FILES_ES6,   [ 'javascripts' ]);
   gulp.watch(FILES_SASS,  [ 'stylesheets' ]);
@@ -77,5 +83,5 @@ gulp.task('serve', [ 'watch' ], function(){
   });
 });
 
-gulp.task('build', [ 'clean', 'javascripts', 'stylesheets', 'pages' ]);
+gulp.task('build', [ 'clean', 'javascripts', 'stylesheets', 'pages', 'images' ]);
 gulp.task('default', [ 'build', 'serve' ]);
