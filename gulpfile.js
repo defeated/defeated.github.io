@@ -40,7 +40,8 @@ gulp.task('javascripts', [ 'es6' ], function(){
   return gulp.src([ FILES_JS, '!**/*.min.js' ])
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(DIR_DEST));
+    .pipe(gulp.dest(DIR_DEST))
+    .pipe(reload({ stream: true }));
 });
 
 gulp.task('sass', function(){
@@ -77,7 +78,7 @@ gulp.task('watch', function(){
   gulp.watch(FILES_HTML,  reload);
 });
 
-gulp.task('serve', [ 'watch' ], function(){
+gulp.task('serve', [ 'build', 'watch' ], function(){
   browserSync({
     server: { baseDir: DIR_DEST }
   });
