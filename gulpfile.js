@@ -12,7 +12,8 @@ var FILES_JS    = DIR_DEST  + '*.js';
 var FILES_HTML  = DIR_DEST  + '*.html';
 
 // dependencies
-var fs            = require('fs-extra');
+var del           = require('del');
+var browserSync   = require('browser-sync');
 var gulp          = require('gulp');
 var rename        = require('gulp-rename');
 var babel         = require('gulp-babel');
@@ -21,12 +22,10 @@ var sass          = require('gulp-sass');
 var autoprefixer  = require('gulp-autoprefixer');
 var minifyCSS     = require('gulp-minify-css');
 var jade          = require('gulp-jade');
-var browserSync   = require('browser-sync');
 
 // tasks
 gulp.task('clean', function(done){
-  fs.removeSync(DIR_DEST);
-  done();
+  del([ DIR_DEST + '/**/*' ], done);
 });
 
 gulp.task('es6', function(){
