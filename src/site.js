@@ -1,5 +1,5 @@
 let taglines = [
-  "is having a good hair day",
+  "is having a good hair day in this photo",
   "is a humble ruby typist",
   "loves plaid",
   "talks with his hands",
@@ -15,7 +15,7 @@ class Rotator {
     this.$element = $(selector)
   }
 
-  start(duration = 5000) {
+  start(duration = 6500) {
     this.timer = setInterval(this.rotate.bind(this), duration)
   }
 
