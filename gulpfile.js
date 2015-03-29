@@ -7,7 +7,6 @@ var FILES_IMG   = DIR_SRC   + 'images/**/*.{jpg,gif,png}';
 var FILES_ES6   = DIR_SRC   + '**/*.js';
 var FILES_SASS  = DIR_SRC   + '**/*.scss';
 var FILES_JADE  = DIR_SRC   + '**/*.jade';
-var FILES_HTML  = DIR_DEST  + '*.html';
 var FILES_CSS   = DIR_DEST  + '*.css';
 var FILES_JS    = DIR_DEST  + '*.js';
 
@@ -74,8 +73,7 @@ gulp.task('images', function(){
 gulp.task('watch', function(){
   gulp.watch(FILES_ES6,   [ 'javascripts' ]);
   gulp.watch(FILES_SASS,  [ 'stylesheets' ]);
-  gulp.watch(FILES_JADE,  [ 'pages' ]);
-  gulp.watch(FILES_HTML,  reload);
+  gulp.watch(FILES_JADE,  [ 'pages', reload ]);
 });
 
 gulp.task('serve', [ 'build', 'watch' ], function(){
