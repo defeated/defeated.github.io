@@ -9,6 +9,7 @@ var FILES_SASS  = DIR_SRC   + '**/*.scss';
 var FILES_JADE  = DIR_SRC   + '**/*.jade';
 var FILES_CSS   = DIR_DEST  + '*.css';
 var FILES_JS    = DIR_DEST  + '*.js';
+var FILES_HTML  = DIR_DEST  + '*.html';
 
 // dependencies
 var fs            = require('fs-extra');
@@ -21,7 +22,6 @@ var autoprefixer  = require('gulp-autoprefixer');
 var minifyCSS     = require('gulp-minify-css');
 var jade          = require('gulp-jade');
 var browserSync   = require('browser-sync');
-var reload        = browserSync.reload;
 
 // tasks
 gulp.task('clean', function(done){
@@ -39,8 +39,7 @@ gulp.task('javascripts', [ 'es6' ], function(){
   return gulp.src([ FILES_JS, '!**/*.min.js' ])
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(DIR_DEST))
-    .pipe(reload({ stream: true }));
+    .pipe(gulp.dest(DIR_DEST));
 });
 
 gulp.task('sass', function(){
@@ -55,8 +54,7 @@ gulp.task('stylesheets', [ 'sass' ], function(){
     .pipe(gulp.dest(DIR_DEST))
     .pipe(minifyCSS())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(DIR_DEST))
-    .pipe(reload({ stream: true }));
+    .pipe(gulp.dest(DIR_DEST));
 });
 
 gulp.task('pages', function(){
@@ -72,13 +70,14 @@ gulp.task('images', function(){
 
 gulp.task('watch', function(){
   gulp.watch(FILES_ES6,   [ 'javascripts' ]);
+  gulp.watch(FILES_JADE,  [ 'pages' ]);
   gulp.watch(FILES_SASS,  [ 'stylesheets' ]);
-  gulp.watch(FILES_JADE,  [ 'pages', reload ]);
 });
 
 gulp.task('serve', [ 'build', 'watch' ], function(){
   browserSync({
-    server: { baseDir: DIR_DEST }
+    files:  [ FILES_CSS, FILES_JS, FILES_HTML ],
+    server: DIR_DEST
   });
 });
 
