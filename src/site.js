@@ -5,6 +5,7 @@ let taglines = [
   "talks with his hands",
   "doesn't hate javascript",
   "trims his beard like a bonsai",
+  "is not a ninja",
 ]
 
 class Rotator {
@@ -16,7 +17,7 @@ class Rotator {
   }
 
   start(duration = 6500) {
-    this.timer = setInterval(this.rotate.bind(this), duration)
+    this.timer = setInterval(() => this.rotate(), duration)
   }
 
   stop() {
