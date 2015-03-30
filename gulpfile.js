@@ -25,7 +25,8 @@ var jade          = require('gulp-jade');
 
 // tasks
 gulp.task('clean', function(done){
-  del([ DIR_DEST + '/**/*' ], done);
+  del.sync([ DIR_DEST ], { force: true });
+  done();
 });
 
 gulp.task('es6', function(){
