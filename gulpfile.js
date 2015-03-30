@@ -3,12 +3,15 @@
 // constants
 var DIR_SRC     = 'src/';
 var DIR_DEST    = 'dist/';
+var DIR_CSS     = DIR_DEST  + 'css/';
+var DIR_JS      = DIR_DEST  + 'js/';
+var DIR_IMG     = DIR_DEST  + 'images/';
 var FILES_IMG   = DIR_SRC   + 'images/**/*.{jpg,gif,png}';
-var FILES_ES6   = DIR_SRC   + '**/*.js';
-var FILES_SASS  = DIR_SRC   + '**/*.scss';
+var FILES_ES6   = DIR_SRC   + 'js/**/*.js';
+var FILES_SASS  = DIR_SRC   + 'sass/**/*.scss';
 var FILES_JADE  = DIR_SRC   + '**/*.jade';
-var FILES_CSS   = DIR_DEST  + '*.css';
-var FILES_JS    = DIR_DEST  + '*.js';
+var FILES_CSS   = DIR_CSS   + '*.css';
+var FILES_JS    = DIR_JS    + '*.js';
 var FILES_HTML  = DIR_DEST  + '*.html';
 
 // dependencies
@@ -32,29 +35,29 @@ gulp.task('clean', function(done){
 gulp.task('es6', function(){
   return gulp.src([ FILES_ES6, '!**/_*' ])
     .pipe(babel())
-    .pipe(gulp.dest(DIR_DEST));
+    .pipe(gulp.dest(DIR_JS));
 });
 
 gulp.task('javascripts', [ 'es6' ], function(){
   return gulp.src([ FILES_JS, '!**/*.min.js' ])
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(DIR_DEST));
+    .pipe(gulp.dest(DIR_JS));
 });
 
 gulp.task('sass', function(){
   return gulp.src([ FILES_SASS, '!**/_*' ])
     .pipe(sass())
-    .pipe(gulp.dest(DIR_DEST));
+    .pipe(gulp.dest(DIR_CSS));
 });
 
 gulp.task('stylesheets', [ 'sass' ], function(){
   return gulp.src([ FILES_CSS, '!**/*.min.css' ])
     .pipe(autoprefixer())
-    .pipe(gulp.dest(DIR_DEST))
+    .pipe(gulp.dest(DIR_CSS))
     .pipe(minifyCSS())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(DIR_DEST));
+    .pipe(gulp.dest(DIR_CSS));
 });
 
 gulp.task('pages', function(){
@@ -65,7 +68,7 @@ gulp.task('pages', function(){
 
 gulp.task('images', function(){
   return gulp.src(FILES_IMG)
-    .pipe(gulp.dest(DIR_DEST + 'images/'));
+    .pipe(gulp.dest(DIR_IMG));
 });
 
 gulp.task('watch', function(){
@@ -81,5 +84,5 @@ gulp.task('serve', [ 'build', 'watch' ], function(){
   });
 });
 
-gulp.task('build', [ 'clean', 'javascripts', 'stylesheets', 'pages', 'images' ]);
+gulp.task('build', [ 'clean', 'javascripts', 'stylesheets', 'images', 'pages' ]);
 gulp.task('default', [ 'build', 'serve' ]);

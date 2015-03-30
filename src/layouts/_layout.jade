@@ -17,7 +17,7 @@ html.no-js(lang="en")
     link(rel="stylesheet" href="//fonts.googleapis.com/css?family=Average+Sans|Average&subset=latin,latin-ext")
     link(rel="stylesheet" href="//cdn.jsdelivr.net/normalize/3.0.2/normalize.min.css")
     link(rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.3.0/css/font-awesome.min.css")
-    link(rel="stylesheet" href="site.min.css")
+    link(rel="stylesheet" href="/css/site.min.css")
 
     script(src="//cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js")
 
@@ -26,10 +26,11 @@ html.no-js(lang="en")
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    block content
+    .container
+      block content
 
     script(src="//cdn.jsdelivr.net/jquery/1.11.2/jquery.min.js")
-    script(src="site.min.js")
+    script(src="/js/site.min.js")
 
     script.
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
