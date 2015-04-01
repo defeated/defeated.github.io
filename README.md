@@ -8,4 +8,5 @@ A little vanity every once in awhile is ok.
 
 ## build
 
-  * `npm run build`
+  * `npm start` to run a development server and watch templates for changes
+  * or `npm run build` to generate all static files
