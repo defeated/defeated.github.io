@@ -1,7 +1,3 @@
 prose:
   rooturl: 'src/'
-  media: 'images/'
-  ignore:
-    - /layouts
-    - /sass
-    - /js
+  media: 'src/images/'
