@@ -72,6 +72,7 @@ gulp.task('images', function(){
 });
 
 gulp.task('watch', function(){
+  gulp.watch(FILES_IMG,   [ 'images' ]);
   gulp.watch(FILES_ES6,   [ 'javascripts' ]);
   gulp.watch(FILES_JADE,  [ 'pages' ]);
   gulp.watch(FILES_SASS,  [ 'stylesheets' ]);
@@ -79,7 +80,7 @@ gulp.task('watch', function(){
 
 gulp.task('serve', [ 'build', 'watch' ], function(){
   browserSync({
-    files:  [ FILES_CSS, FILES_JS, FILES_HTML ],
+    files:  [ FILES_IMG, FILES_CSS, FILES_JS, FILES_HTML ],
     server: DIR_DEST
   });
 });
