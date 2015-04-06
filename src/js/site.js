@@ -1,6 +1,7 @@
 let taglines = [
   "is having a good hair day in this photo",
   "is a humble ruby typist",
+  "loves prefers lowercase letters",
   "loves plaid",
   "talks with his hands",
   "doesn't hate javascript",
@@ -12,7 +13,7 @@ class Rotator {
   constructor(items, selector) {
     this.items    = items;
     this.max      = items.length - 1;
-    this.index    = 0;
+    this.index    = 1;
     this.$element = $(selector);
   }
 
