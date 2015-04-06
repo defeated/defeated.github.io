@@ -6,44 +6,44 @@ let taglines = [
   "doesn't hate javascript",
   "trims his beard like a bonsai",
   "is not a ninja",
-]
+];
 
 class Rotator {
   constructor(items, selector) {
-    this.items    = items
-    this.max      = items.length - 1
-    this.index    = 0
-    this.$element = $(selector)
+    this.items    = items;
+    this.max      = items.length - 1;
+    this.index    = 0;
+    this.$element = $(selector);
   }
 
   start(duration = 6500) {
-    this.timer = setInterval(() => this.rotate(), duration)
+    this.timer = setInterval(() => this.rotate(), duration);
   }
 
   stop() {
-    clearInterval(this.timer)
+    clearInterval(this.timer);
   }
 
   next() {
     if(this.index == this.max) {
-      return this.stop()
+      return this.stop();
     }
-    this.index++
+    this.index++;
   }
 
   rotate() {
     this.$element.fadeOut(() => {
-      this.$element.text(this.tagline).fadeIn()
-    })
-    this.next()
+      this.$element.text(this.tagline).fadeIn();
+    });
+    this.next();
   }
 
   get tagline() {
-    return this.items[this.index]
+    return this.items[this.index];
   }
 }
 
 jQuery(function(){
-  let rotator = new Rotator(taglines, '.tagline')
-  rotator.start()
-})
+  let rotator = new Rotator(taglines, '.tagline');
+  rotator.start();
+});
