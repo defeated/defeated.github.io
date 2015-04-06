@@ -25,17 +25,16 @@ class Rotator {
   }
 
   next() {
-    if(this.index == this.max) {
-      return this.stop();
-    }
+    if(this.index == this.max) return this.stop();
     this.index++;
   }
 
   rotate() {
-    this.$element.fadeOut(() => {
-      this.$element.text(this.tagline).fadeIn();
+    this.$element.fadeOut(150, () => {
+      this.$element.text(this.tagline).fadeIn(150, () => {
+        this.next();
+      });
     });
-    this.next();
   }
 
   get tagline() {
