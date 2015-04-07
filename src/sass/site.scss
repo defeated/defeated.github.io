@@ -29,8 +29,10 @@ footer {
   }
 }
 
-nav {
+.nav {
+  align-self: flex-start; // flexbox vertically top
   background-color: rgba(255, 255, 255, .1);
+  flex: 1 100%;
 
   ul {
     font-size: 1.5em;
@@ -51,9 +53,9 @@ article {
 .box {
   align-items: center; // flexbox vertically center
   display: flex;
-  height: 100vh;
+  flex-flow: row wrap;
+  height: 100vh; // 100% height of the viewport
   justify-content: center; // flexbox horizontally center
-
 }
 
 .hero {
