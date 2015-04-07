@@ -1,7 +1,7 @@
 let taglines = [
   "is having a good hair day in this photo",
   "is a humble ruby typist",
-  "loves prefers lowercase letters",
+  "prefers lowercase letters",
   "loves plaid",
   "talks with his hands",
   "doesn't hate javascript",
