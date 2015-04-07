@@ -46,4 +46,13 @@ class Rotator {
 jQuery(function(){
   let rotator = new Rotator(taglines, '.tagline');
   rotator.start();
+
+  $('a[href*=#]:not([href=#])').click(function(e) {
+    e.preventDefault();
+    let $target = $(this.hash);
+    if ($target.length) {
+      let top = $target.offset().top;
+      $('html,body').animate({ scrollTop: top }, 1000);
+    }
+  });
 });
