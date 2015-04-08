@@ -20,12 +20,16 @@ header {
 }
 
 footer {
-  margin: 1em;
+  color: #888;
+  font-size: .7em;
+  margin: 2em;
+  text-align: center;
 
   .brand {
-    display: block;
-    margin: auto;
-    opacity: .075;
+    display: inline-block;
+    height: 32px;
+    opacity: .05;
+    width: 32px;
   }
 }
 
