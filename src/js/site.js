@@ -43,16 +43,32 @@ class Rotator {
   }
 }
 
+class SmoothScroll {
+  constructor(target, duration = 500) {
+    this.$target = $(target);
+    this.duration = duration;
+  }
+
+  static listen() {
+    $('a[href*=#]:not([href=#])').click(function(e) {
+      e.preventDefault();
+      new SmoothScroll(this.hash).go();
+    });
+  }
+
+  get offset() {
+    return this.$target.offset();
+  }
+
+  go() {
+    if (!this.$target.length) return;
+    $('html, body').animate({ scrollTop: this.offset.top }, this.duration);
+  }
+}
+
 jQuery(function(){
+  SmoothScroll.listen();
+
   let rotator = new Rotator(taglines, '.tagline');
   rotator.start();
-
-  $('a[href*=#]:not([href=#])').click(function(e) {
-    e.preventDefault();
-    let $target = $(this.hash);
-    if ($target.length) {
-      let top = $target.offset().top;
-      $('html,body').animate({ scrollTop: top }, 1000);
-    }
-  });
 });

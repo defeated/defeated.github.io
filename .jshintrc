@@ -1,4 +1,5 @@
 {
   "esnext": true,
+  "jquery": true,
   "node": true
 }
