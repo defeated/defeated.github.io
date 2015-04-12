@@ -71,4 +71,14 @@ jQuery(function(){
 
   let rotator = new Rotator(taglines, '.tagline');
   rotator.start();
+
+  // $(window).scroll(function(e) {
+  //   let top = $(this).scrollTop();
+  //   let $nav = $('.nav');
+  //   if (top > 400) {
+  //     $nav.addClass('pinned');
+  //   } else {
+  //     $nav.removeClass('pinned');
+  //   }
+  // });
 });
