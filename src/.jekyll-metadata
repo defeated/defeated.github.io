@@ -1,0 +1,17 @@
+---
+"/Users/eddie/Projects/eddiecianci/src/index.html":
+  mtime: 2015-04-12 15:04:47.000000000 -04:00
+  deps:
+  - "/Users/eddie/Projects/eddiecianci/src/_layouts/default.html"
+"/Users/eddie/Projects/eddiecianci/src/images/bg.png":
+  mtime: 2015-03-31 22:21:43.000000000 -04:00
+  deps: []
+"/Users/eddie/Projects/eddiecianci/src/images/face.png":
+  mtime: 2015-04-06 18:05:26.000000000 -04:00
+  deps: []
+"/Users/eddie/Projects/eddiecianci/src/images/favicon.png":
+  mtime: 2015-04-06 18:05:26.000000000 -04:00
+  deps: []
+"/Users/eddie/Projects/eddiecianci/src/_layouts/default.html":
+  mtime: 2015-04-12 14:59:39.000000000 -04:00
+  deps: []

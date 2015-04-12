@@ -1,12 +1,16 @@
 # personal site / blog maybe
 
-A little vanity every once in awhile is ok.
+The love child of jekyll.rb + gulp.js
 
 ## setup
 
-  * `npm install`
+  * `npm run setup`
 
 ## build
 
   * `npm start` to run a development server and watch templates for changes
   * or `npm run build` to generate all static files
+
+## deploy
+
+  * TBD

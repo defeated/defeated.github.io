@@ -1,89 +1,63 @@
-'use strict';
+var gulp        = require('gulp'),
+    postcss     = require('gulp-postcss'),
+    sass        = require('gulp-sass'),
+    rename      = require('gulp-rename'),
+    minifycss   = require('gulp-minify-css'),
+    babel       = require('gulp-babel'),
+    uglify      = require('gulp-uglify'),
+    autoprefix  = require('autoprefixer-core'),
+    browserSync = require('browser-sync'),
+    exec        = require('child_process').execSync;
 
-// constants
-var DIR_SRC     = 'src/';
-var DIR_DEST    = 'dist/';
-var DIR_CSS     = DIR_DEST  + 'css/';
-var DIR_JS      = DIR_DEST  + 'js/';
-var DIR_IMG     = DIR_DEST  + 'images/';
-var FILES_IMG   = DIR_SRC   + 'images/**/*.{jpg,gif,png}';
-var FILES_ES6   = DIR_SRC   + 'js/**/*.js';
-var FILES_SASS  = DIR_SRC   + 'sass/**/*.scss';
-var FILES_JADE  = DIR_SRC   + '**/*.jade';
-var FILES_CSS   = DIR_CSS   + '*.css';
-var FILES_JS    = DIR_JS    + '*.js';
-var FILES_HTML  = DIR_DEST  + '*.html';
-
-// dependencies
-var del           = require('del');
-var browserSync   = require('browser-sync');
-var gulp          = require('gulp');
-var rename        = require('gulp-rename');
-var babel         = require('gulp-babel');
-var uglify        = require('gulp-uglify');
-var sass          = require('gulp-sass');
-var autoprefixer  = require('gulp-autoprefixer');
-var minifyCSS     = require('gulp-minify-css');
-var jade          = require('gulp-jade');
-
-// tasks
-gulp.task('clean', function(done){
-  del.sync([ DIR_DEST ], { force: true });
-  done();
+// run external jekyll process. must be sync because of a race condition where
+// jekyll deletes the destination directory contents before building.
+gulp.task('jekyll', function(callback) {
+  exec('bin/jekyll build');
+  callback();
 });
 
-gulp.task('es6', function(){
-  return gulp.src([ FILES_ES6, '!**/_*' ])
+// process stylesheets and inject into browser.
+gulp.task('stylesheets', function() {
+  return gulp.src('src/css/site.scss')
+    .pipe(sass())
+    .pipe(postcss([ autoprefix() ]))
+    .pipe(gulp.dest('dist/css'))
+    .pipe(minifycss())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest('dist/css'))
+    .pipe(browserSync.reload({ stream: true }));
+});
+
+// process stylesheets and inject into browser.
+gulp.task('javascripts', function() {
+  return gulp.src('src/js/site.js')
     .pipe(babel())
-    .pipe(gulp.dest(DIR_JS));
-});
-
-gulp.task('javascripts', [ 'es6' ], function(){
-  return gulp.src([ FILES_JS, '!**/*.min.js' ])
+    .pipe(gulp.dest('dist/js'))
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(DIR_JS));
+    .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('sass', function(){
-  return gulp.src([ FILES_SASS, '!**/_*' ])
-    .pipe(sass())
-    .pipe(gulp.dest(DIR_CSS));
+// watch for source file changes and run related tasks.
+gulp.task('watch', [ 'build' ], function() {
+  gulp.watch('src/**/*.scss', [ 'stylesheets' ]);
+  gulp.watch('src/**/*.js',   [ 'javascripts' ]);
+  gulp.watch('src/**/*.html', [ 'build' ]);
+  gulp.watch('src/**/*.md',   [ 'build' ]);
 });
 
-gulp.task('stylesheets', [ 'sass' ], function(){
-  return gulp.src([ FILES_CSS, '!**/*.min.css' ])
-    .pipe(autoprefixer())
-    .pipe(gulp.dest(DIR_CSS))
-    .pipe(minifyCSS())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(DIR_CSS));
-});
-
-gulp.task('pages', function(){
-  return gulp.src([ FILES_JADE, '!**/_*' ])
-    .pipe(jade({ pretty: true }))
-    .pipe(gulp.dest(DIR_DEST));
-});
-
-gulp.task('images', function(){
-  return gulp.src(FILES_IMG)
-    .pipe(gulp.dest(DIR_IMG));
-});
-
-gulp.task('watch', function(){
-  gulp.watch(FILES_IMG,   [ 'images' ]);
-  gulp.watch(FILES_ES6,   [ 'javascripts' ]);
-  gulp.watch(FILES_JADE,  [ 'pages' ]);
-  gulp.watch(FILES_SASS,  [ 'stylesheets' ]);
-});
-
-gulp.task('serve', [ 'build', 'watch' ], function(){
+// launch local server and listen for changes.
+gulp.task('serve', [ 'watch' ], function() {
   browserSync({
-    files:  [ FILES_IMG, FILES_CSS, FILES_JS, FILES_HTML ],
-    server: DIR_DEST
+    files: [ 'dist/**/*.html', 'dist/js/*.js' ],
+    server: {
+      baseDir: 'dist'
+    }
   });
 });
 
-gulp.task('build', [ 'clean', 'javascripts', 'stylesheets', 'images', 'pages' ]);
-gulp.task('default', [ 'build', 'serve' ]);
+// meta task to run all build-related tasks.
+gulp.task('build', [ 'jekyll', 'javascripts', 'stylesheets' ]);
+
+// do the damn thing
+gulp.task('default', [ 'serve' ]);
