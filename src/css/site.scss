@@ -53,22 +53,19 @@ footer {
 }
 
 .content {
+  font-size: 1.33em;
   margin: 2em auto;
   max-width: 800px;
   padding: 0 2em;
 
-  article {
-    font-size: 1.33em;
+  h1 {
+    border-bottom: 2px solid rgba(0, 0, 0, .05);
+    padding-bottom: .5em;
+  }
 
-    h1 {
-      border-bottom: 2px solid rgba(0, 0, 0, .05);
-      padding-bottom: .5em;
-    }
-
-    p {
-      font-family: 'Average', serif;
-      line-height: 1.45em;
-    }
+  article p {
+    font-family: 'Average', serif;
+    line-height: 1.45em;
   }
 
   .title {

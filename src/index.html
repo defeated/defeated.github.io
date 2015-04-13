@@ -44,24 +44,25 @@ title: mornin'!
 <a id="words"></a>
 
 <div class="content">
-  <article>
-    <h1>recently</h1>
-    <h2 class="title">
-      <a href="/ubuntu-upstart-monitor-autossh">
-        autossh monitoring with ubuntu upstart
+  <h1>recently</h1>
+
+  {% for post in site.posts %}
+    <article>
+      <h2 class="title">
+        <a href="{{ post.url }}">
+          {{ post.title }}
+        </a>
+      </h2>
+      <span class="meta">
+        {{ post.date | date_to_string }} &rarr; {{ post.category }}
+      </span>
+      <p class="excerpt">
+        {{ post.excerpt }}
+      </p>
+      <a href="{{ post.url }}" class="read">
+        read &rarr;
       </a>
-    </h2>
-    <span class="meta">
-      about 1 day ago &rarr; ops
-    </span>
-    <p class="excerpt">
-      Sometimes you need to establish a permanent SSH tunnel; autossh can
-      be used to monitor a connection and restart it in the event of
-      an unexpected disconnect. But who watches autossh? If you're using
-      Ubuntu prior to 15.04/Vivid, you can use the built-in Upstart daemon.
-    </p>
-    <a href="/ubuntu-upstart-monitor-autossh" class="read">
-      read &rarr;
-    </a>
-  </article>
+    </article>
+  {% endfor %}
+
 </div>
