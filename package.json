@@ -8,6 +8,7 @@
   "devDependencies": {
     "autoprefixer-core": "^5.1.8",
     "browser-sync": "^2.5.3",
+    "dotenv": "^1.1.0",
     "gulp": "^3.8.11",
     "gulp-babel": "^5.1.0",
     "gulp-minify-css": "^1.0.0",

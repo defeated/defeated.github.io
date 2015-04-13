@@ -1,3 +1,7 @@
+// load .env early
+require('dotenv').load();
+
+// load dependencies
 var gulp        = require('gulp'),
     postcss     = require('gulp-postcss'),
     sass        = require('gulp-sass'),
