@@ -1,3 +1,4 @@
 source:      src
 destination: dist
 exclude:     [ "*.scss", "*.js" ]
+permalink:   pretty
