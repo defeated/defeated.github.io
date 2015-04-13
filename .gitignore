@@ -5,3 +5,4 @@ Gemfile.lock
 *.log
 .jekyll-metadata
 .env
+.awspublish-*

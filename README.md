@@ -13,4 +13,4 @@ The love child of jekyll.rb + gulp.js
 
 ## deploy
 
-  * TBD
+  * `npm run deploy`
