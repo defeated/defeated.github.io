@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<div class="content">
+  <article>
+    <h2 class="title">
+      <a href="{{ page.url }}">
+        {{ page.title }}
+      </a>
+    </h2>
+    <span class="meta">
+      {{ page.date | date_to_string }} &rarr; {{ page.category }}
+    </span>
+    <p>
+      {{ content }}
+    </p>
+    <a href="/" class="read">
+      &larr; back
+    </a>
+  </article>
+</div>
