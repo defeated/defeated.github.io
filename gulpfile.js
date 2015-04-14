@@ -1,3 +1,7 @@
+// load .env early
+require('dotenv').load();
+
+// load dependencies
 var gulp        = require('gulp'),
     postcss     = require('gulp-postcss'),
     sass        = require('gulp-sass'),
@@ -7,6 +11,7 @@ var gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     autoprefix  = require('autoprefixer-core'),
     browserSync = require('browser-sync'),
+    awspublish  = require('gulp-awspublish'),
     exec        = require('child_process').execSync;
 
 // run external jekyll process. must be sync because of a race condition where
@@ -54,6 +59,21 @@ gulp.task('serve', [ 'watch' ], function() {
       baseDir: 'dist'
     }
   });
+});
+
+// deployment task (using s3)
+gulp.task('deploy', function() {
+  var publisher = awspublish.create({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    bucket: 'eddiema.de'
+  });
+
+  return gulp.src('dist/**/*')
+    .pipe(publisher.publish())
+    .pipe(publisher.sync())
+    .pipe(publisher.cache())
+    .pipe(awspublish.reporter());
 });
 
 // meta task to run all build-related tasks.
