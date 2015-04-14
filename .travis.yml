@@ -1,0 +1,11 @@
+language:       ruby
+rvm:            2.2.1
+before_install: npm run setup
+script:         npm run build
+after_success:  npm run deploy
+branches:
+  only:
+    - master
+env:
+  - secure: "q1/7BqoOxttr33YhDFPgEtkyVqCXZXQZlnuJuzCqPdVop3Okjvjyr7BnIT0JPMOgvpv90cDpcykVK9WiDpTaXZRh4/Px2joa0aU3OlSCrBeFXYGHQH8+ZVClpfYC8JnKYnIMJsNstrNxLMildGRYPFWE98XAAy1dzGT4cdfQzjE="
+  - secure: "cPetNDuK47i3sFF9OUqUkx1TXJzEZQ2vYxyHjVjxF3upTPOVVKLTf64MuO8JPjTN7loA2EpjMjH5kCJttfbtstOJCWZi653VN2xfTdU80kVXCL/kjlzI/p3W7vFNZV+ix5Mq6AM0R/3x7I2LsK65LckOoSQy8XvdYICcn57xRFw="
