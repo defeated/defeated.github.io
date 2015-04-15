@@ -1,6 +1,8 @@
 language:       ruby
+rvm:            2.2.1
 sudo:           false
-before_install: npm run setup
+before_install: nvm install 0.12.2 && nvm use 0.12.2
+install:        npm run setup
 before_script:  cp .env.example .env
 script:         npm run build
 after_success:  npm run deploy
