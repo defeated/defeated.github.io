@@ -1,12 +1,14 @@
 language:       ruby
-rvm:            2.2.1
+sudo:           false
 before_install: npm run setup
 before_script:  cp .env.example .env
 script:         npm run build
 after_success:  npm run deploy
+
 branches:
   only:
     - master
+
 env:
   global:
     - secure: "q1/7BqoOxttr33YhDFPgEtkyVqCXZXQZlnuJuzCqPdVop3Okjvjyr7BnIT0JPMOgvpv90cDpcykVK9WiDpTaXZRh4/Px2joa0aU3OlSCrBeFXYGHQH8+ZVClpfYC8JnKYnIMJsNstrNxLMildGRYPFWE98XAAy1dzGT4cdfQzjE="
