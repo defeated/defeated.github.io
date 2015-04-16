@@ -1,3 +1,13 @@
 prose:
+  siteurl: 'https://eddiema.de/'
   rooturl: 'src/'
   media: 'src/images/'
+  metadata:
+    _posts:
+      - name: 'category'
+        field:
+          element: 'text'
+      - name: 'layout'
+        field:
+          element: 'hidden'
+          value: 'post'
