@@ -1,6 +1,7 @@
 ---
 layout: post
 category: ops
+published: false
 ---
 
 Sometimes you need to establish a permanent SSH tunnel; autossh can
