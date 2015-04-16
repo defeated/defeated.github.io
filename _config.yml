@@ -14,7 +14,16 @@ prose:
     - 'src/images'
     - 'src/*.html'
   metadata:
-    src:
+    src/_drafts:
+      - name: 'category'
+        label: 'Category'
+        field:
+          element: 'text'
+      - name: 'layout'
+        field:
+          element: 'hidden'
+          value: 'post'
+    src/_posts:
       - name: 'category'
         label: 'Category'
         field:
