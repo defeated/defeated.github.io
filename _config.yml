@@ -16,8 +16,8 @@ prose:
   metadata:
     src/_drafts:
       - name: 'category'
-        label: 'Category'
         field:
+          label: 'Category'
           element: 'text'
       - name: 'layout'
         field:
@@ -25,8 +25,8 @@ prose:
           value: 'post'
     src/_posts:
       - name: 'category'
-        label: 'Category'
         field:
+          label: 'Category'
           element: 'text'
       - name: 'layout'
         field:
