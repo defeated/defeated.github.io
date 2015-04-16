@@ -7,6 +7,12 @@ prose:
   siteurl: 'https://eddiema.de/'
   rooturl: 'src'
   media: 'src/images'
+  ignore:
+    - 'src/_layouts'
+    - 'src/css'
+    - 'src/js'
+    - 'src/images'
+    - 'src/*.html'
   metadata:
     src/_drafts:
       - name: 'category'
